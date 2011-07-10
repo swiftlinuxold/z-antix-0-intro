@@ -1,0 +1,31 @@
+SUMMARY
+1.  Install antiX Linux in VirtualBox.  You need the guest OS for working on Swift Linux.  Unless otherwise noted, ALL procedures described in this file are to be done in the guest OS.
+2.  Set up guest additions to allow you to share files between the host and guest OS.
+3.  Fill the package directory.
+4.  Create space for this project.
+5.  Install Git.
+6.  Take a snapshot in VirtualBox.  This is the point you may wish to return to later.
+7.  Download this project.
+8.  Copy your revised project from the guest OS to the host OS.
+9.  Return to the snapshot you created and copy your project from the host OS to the guest OS.
+
+SET UP GUEST ADDITIONS (allows you to share files between the host and guest OS)
+1.  From the Guest OS, go to Devices -> Shared Folders and select the /home/(host username)/share directory on your host OS.  Select "Make Permanent" option but NOT the auto-mount option.
+2.  Go to Devices -> Guest Additions.
+3.  As root in the Guest OS, enter "mkdir /mnt/host".
+4.  As root in the Guest OS, enter the command "mount /media/cdrom"
+5.  As root in the Guest OS, install the guest additions by going to /media/cdrom and running the VBoxLinuxAdditions.run script (by entering "sh VBoxLinuxAdditions.run").
+6.  After the guest additions have been added, enter as root in the guest OS "mount -t vboxsf share /mnt/host".  
+7.  Now the /mnt/host directory in the guest OS is mirrored by the /home/(host OS username)/share directory in the host OS.
+8.  PLEASE NOTE: The file sharing capability is NOT permanent.  Each time you boot up the guest OS, you'll have to become root in the guest OS and enter "mount -t vboxsf share /mnt/host" in order to resume sharing files between the guest and host OS.
+9.  Power down VirtualBox and take a snapshot.
+
+FILL THE PACKAGE DIRECTORY
+1.  Initially, the package directory is empty except for installed packages.  As root, enter "apt-get update" to update the package directory.
+
+INSTALL AND SET UP GIT
+1.  Follow the instructions at http://help.github.com/linux-set-up-git/
+
+SNAPSHOT
+1.  When you have a directory for the project and Git installed, shut down the guest OS.
+2.  When the virtual machine is off, take a snapshot.  This is the point you want to return to later in order to see the results of changes you make to the project WITHOUT having to set everything up again.
