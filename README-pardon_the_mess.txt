@@ -1,0 +1,4 @@
+7-13-2011:
+If you want to see the old code, go to the repository z-obsolete-change_files-0_1_1.  This repository was previously called change_files and saved to the /home/(username)/develop directory.  All of the code needed to transform antiX Linux into Swift Linux was in this file.
+
+I am currently in the process of giving each major portion of the process of transforming antiX Linux into Swift Linux its own repository.  Thus, there will be a repository for IceApe, a repository for IceWM, a repository for ROX, etc.  The 1-build repository will contain the code that calls the functions in the other repositories in order to provide a 1-step build.  This repository will also include the remastering scripts.
