@@ -28,4 +28,13 @@ INSTALL AND SET UP GIT
 
 SNAPSHOT
 1.  When you have a directory for the project and Git installed, shut down the guest OS.
-2.  When the virtual machine is off, take a snapshot.  This is the point you want to return to later in order to see the results of changes you make to the project WITHOUT having to set everything up again.
+2.  When the virtual machine is off, take a snapshot.  This is the point you want to return to later in order to see the impact of your algorithm on the ORIGINAL antiX Linux configuration.
+
+DOWNLOADING PROJECTS
+1.  Open a terminal window.  As your username, create the directory "develop" within /home/(username) .  This new directory is /home/(username)/develop .
+2.  cd your way into this directory and enter "git clone (GIT URL)".  The GIT URL is the URL of the repository you need to download and can be found on GitHub.  For example, you can find the URL of the 9-test-github repository on GitHub by going to https://github.com/swiftlinux , selecting the 9-test-github repository (which takes you to https://github.com/swiftlinux/9-test-github), clicking on the SSH button, and looking at the URL just to the right of the "Git Read-Only" button.  In this case, the URL is git@github.com:swiftlinux/9-test-github.git .  Thus the command to download the 9-test-github repositories are:
+mkdir /home/(username)/develop
+cd /home/(username)/develop
+git clone git@github.com:swiftlinux/9-test-github.git
+3.  Repeat step 2 for all additional repositories you need to download.
+
