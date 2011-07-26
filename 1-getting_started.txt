@@ -1,40 +1,72 @@
 SUMMARY
-1.  Install antiX Linux in VirtualBox.  You need the guest OS for working on Swift Linux.  Unless otherwise noted, ALL procedures described in this file are to be done in the guest OS.
-2.  Set up guest additions to allow you to share files between the host and guest OS.
-3.  Fill the package directory.
-4.  Create space for this project.
-5.  Install Git.
-6.  Take a snapshot in VirtualBox.  This is the point you may wish to return to later.
-7.  Download this project.
-8.  Copy your revised project from the guest OS to the host OS.
-9.  Return to the snapshot you created and copy your project from the host OS to the guest OS.
+1.  Install antiX Linux in VirtualBox.  You need the guest OS for working on Swift Linux.  
+Unless otherwise noted, ALL procedures described in this file are to be done in the guest OS.
+2.  Fill the package directory.
+3.  Install Git.
+4.  Set up guest additions to allow you to share files between the host and guest OS.
+5.  Create space for this project.
+6.  Download this project.
+7.  Copy your revised project from the guest OS to the host OS.
 
-SET UP GUEST ADDITIONS (allows you to share files between the host and guest OS)
-1.  From the Guest OS, go to Devices -> Shared Folders and select the /home/(host username)/share directory on your host OS.  Select "Make Permanent" option but NOT the auto-mount option.
-2.  Go to Devices -> Guest Additions.
-3.  As root in the Guest OS, enter "mkdir /mnt/host".
-4.  As root in the Guest OS, enter the command "mount /media/cdrom"
-5.  As root in the Guest OS, install the guest additions by going to /media/cdrom and running the VBoxLinuxAdditions.run script (by entering "sh VBoxLinuxAdditions.run").
-6.  After the guest additions have been added, enter as root in the guest OS "mount -t vboxsf share /mnt/host".  
-7.  Now the /mnt/host directory in the guest OS is mirrored by the /home/(host OS username)/share directory in the host OS.
-8.  PLEASE NOTE: The file sharing capability is NOT permanent.  Each time you boot up the guest OS, you'll have to become root in the guest OS and enter "mount -t vboxsf share /mnt/host" in order to resume sharing files between the guest and host OS.
-9.  Power down VirtualBox and take a snapshot.
+INSTALLING ANTIX LINUX
+1.  Install antiX Linux as the guest OS in VirtualBox.
+2.  When you are finished, shut down the guest OS and take a snapshot.
 
 FILL THE PACKAGE DIRECTORY
-1.  Initially, the package directory is empty except for installed packages.  As root, enter "apt-get update" to update the package directory.
+1.  Initially, the package directory is empty except for installed packages.  
+As root, enter "apt-get update" to update the package directory.
+2.  After the package directory has been filled, shut down the guest OS and take a snapshot.
 
 INSTALL AND SET UP GIT
-1.  Follow the instructions at http://help.github.com/linux-set-up-git/
-
-SNAPSHOT
-1.  When you have a directory for the project and Git installed, shut down the guest OS.
-2.  When the virtual machine is off, take a snapshot.  This is the point you want to return to later in order to see the impact of your algorithm on the ORIGINAL antiX Linux configuration.
-
-DOWNLOADING PROJECTS
-1.  Open a terminal window.  As your username, create the directory "develop" within /home/(username) .  This new directory is /home/(username)/develop .
-2.  cd your way into this directory and enter "git clone (GIT URL)".  The GIT URL is the URL of the repository you need to download and can be found on GitHub.  For example, you can find the URL of the 9-test-github repository on GitHub by going to https://github.com/swiftlinux , selecting the 9-test-github repository (which takes you to https://github.com/swiftlinux/9-test-github), clicking on the SSH button, and looking at the URL just to the right of the "Git Read-Only" button.  In this case, the URL is git@github.com:swiftlinux/9-test-github.git .  Thus the command to download the 9-test-github repositories are:
-mkdir /home/(username)/develop
-cd /home/(username)/develop
+1.  Follow the instructions at http://help.github.com/linux-set-up-git/ .
+2.  Open a terminal window.  As your username (NOT root), create the directory "develop" within 
+/home/(username) .  This new directory is /home/(username)/develop .
+3.  cd your way into this directory and enter "git clone (GIT URL)".  The GIT URL is the URL of 
+the repository you need to download and can be found on GitHub.  For example, you can find the URL 
+of the 9-test-github repository on GitHub by going to https://github.com/swiftlinux , 
+selecting the 9-test-github repository (which takes you to 
+https://github.com/swiftlinux/9-test-github), clicking on the SSH button, and looking at the URL 
+just to the right of the "Git Read-Only" button.  In this case, the URL is 
+git@github.com:swiftlinux/9-test-github.git .  Thus the command to download the 9-test-github 
+repositories are:
+mkdir ~/develop
+cd ~/develop
 git clone git@github.com:swiftlinux/9-test-github.git
+4.  If you do not have a /home/(username)/develop/9-test-github, then you don't have Git set up 
+properly.
+5.  If the 9-test-github repository did properly download, shut down the guest OS and take a
+snapshot.
+
+SET UP GUEST ADDITIONS (allows you to share files between the host and guest OS)
+1.  In your host OS as the user (NOT root), enter "mkdir ~/guest".
+2.  From the Guest OS, go to Devices -> Shared Folders and select the /home/(host username)/guest 
+directory on your host OS.  Select "Make Permanent" option but NOT the auto-mount option.
+3.  Go to Devices -> Guest Additions.
+4.  As root in the Guest OS, enter the following commands:
+mkdir /mnt/host
+mount /media/cdrom
+cd /media/cdrom
+sh VBoxLinuxAdditions.run
+5.  After the guest additions have been added, enter as root in the guest OS 
+"mount -t vboxsf guest /mnt/host".  
+6.  Now the /mnt/host directory in the guest OS is mirrored by the /home/(host OS username)/share 
+directory in the host OS.
+7.  PLEASE NOTE: The file sharing capability is NOT automatic.  Each time you boot up the guest 
+OS, you'll have to become root in the guest OS and enter "mount -t vboxsf share /mnt/host" in 
+order to resume sharing files between the guest and host OS.
+8.  Power down VirtualBox and take a snapshot.
+
+DOWNLOADING ADDITIONAL PROJECTS
+1.  As a user (NOT root), enter "cd ~/develop".
+2.  Enter "git clone (GIT URL)".  The GIT URL is the URL of the repository you need to download 
+and can be found on GitHub.  For example, you can find the URL of this repository on GitHub by 
+going to https://github.com/swiftlix , selecting the 0-intro repository (which takes you to 
+https://github.com/swiftlinux/0-intro), clicking on the SSH button, and looking at the URL 
+just to the right of the "Git Read-Only" button.  In this case, the URL is 
+git@github.com:swiftlinux/0-intro.git .  Thus the command to download the 0-intro repository is 
+"git clone git@github.com:swiftlinux/0-intro.git".
 3.  Repeat step 2 for all additional repositories you need to download.
+4.  Please note that the 1-build repository contains a script for downloading multiple 
+repositories.
+
 
