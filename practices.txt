@@ -1,0 +1,20 @@
+Each major function has its own repository.
+The script main.sh in the repositories is used to transform antiX Linux into Swift Linux.
+
+Entering the command "exit $?" shows the exit code.
+
+The command "exit 0" is used at the end of each script.  
+
+Most scripts need to be executed as root.  If such scripts are not executed as root, the command "exit 2" is invoked.  Entering 
+
+All GNU Bash scripts begin with:
+#!/bin/bash
+# Proper header for a Bash script.
+
+Most GNU Bash scripts check to make sure that the script is being executed as root with the code:
+# Check for root user login
+if [ ! $( id -u ) -eq 0 ]; then
+	echo "You must be root to run this script."
+	echo "Please enter su before running this script again."
+	exit 2
+fi
