@@ -3,7 +3,7 @@ The script main.sh in the repositories is used to transform antiX Linux into Swi
 
 Entering the command "exit $?" shows the exit code.
 
-The command "exit 0" is used at the end of each script.  
+The command "exit 0" is used at the end of each script.  This signifies successful completion.
 
 Most scripts need to be executed as root.  If such scripts are not executed as root, the command "exit 2" is invoked.  Entering 
 
@@ -18,3 +18,20 @@ if [ ! $( id -u ) -eq 0 ]; then
 	echo "Please enter su before running this script again."
 	exit 2
 fi
+
+Any GNU Bash script that is used in the remastering process needs to check to see if chroot mode is in place:
+IS_CHROOT=0 # changed to 1 if and only if in chroot mode
+USERNAME=""
+DIR_DEVELOP=""
+
+# The remastering process uses chroot mode.
+# Check to see if this script is operating in chroot mode.
+# /srv directory only exists in chroot mode
+if [-d "/srv"]; then
+	IS_CHROOT=1 # in chroot mode
+	DIR_DEVELOP=/usr/local/bin/develop 
+else
+	USERNAME=$(logname) # not in chroot mode
+	DIR_DEVELOP=/home/$USERNAME/develop 
+fi
+
